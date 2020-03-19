@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "pruebas_alfredo.h"
 #include "Recursividad.h"
+#include <array>
 #include <Windowsx.h>
 
 #define MAX_LOADSTRING 100
@@ -126,8 +127,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 const int CELL_SIZE = 60;
 int playerTurn = 1;
 int anterior = 0;
+int puntosPlayer = 0;
+int xAnterior, yAnterior;
 bool cambio = true;
-int gameBoardplayer[64] = {};
+bool precionado = false;
 int gameBoardrandom[64] = {};
 int cambiarCell[3];
 //HICON jolla1, jolla2;
@@ -215,6 +218,16 @@ bool GetCellRect(HWND hWnd, int index, RECT* pRect) {
 	return false;
 }
 /**
+*@brief suma las puntuaciones para que no se repita demaciadas veces en la funcion principal
+*/
+//no funciono
+int sumaDePuntos() {
+	Recursividad* recursividad;
+	recursividad = new Recursividad;
+	puntosPlayer += recursividad->Puntos();
+	return 0;
+}
+/**
 *@brief esto es para saver que color hay en especifico en cada casilla y poder usar x, y (k, j) 
 *@brief para comparar en recursividad
 *@param cellContenido es un array que contiene los colores de todas las casillas
@@ -244,39 +257,61 @@ switch (message) {
 	}
 	break;
 	case WM_LBUTTONDOWN: {
+		Recursividad* recursividad;
+		recursividad = new Recursividad;
+		RECT rc;
 		HDC hdc = GetDC(hWnd);
-		bool precionado = false;
 		int xPos = GET_X_LPARAM(lParam);
 		int yPos = GET_Y_LPARAM(lParam);
 		int index = GetCellNumberFromPoint(hWnd, xPos, yPos);
-		if (NULL != hdc) {
-			//regresa el valor (index) de la casilla
-			/*WCHAR temp[100];
-			wsprintf(temp, L"Index = %d", index);
-			TextOut(hdc, xPos, yPos, temp, lstrlen(temp));*/
-			//da la dimencion de la casilla dado su index, evita que los colores se sobrepongan y
-			//si el jugador da dos clicls en diferentes casillas lo siguiente intercambia el color de las casillas donde se iso clic
-			if (index != -1) {
-				RECT rcCell;
-				if (GetCellRect(hWnd, index, &rcCell)) {
-					if (playerTurn == 2) {
-						cambiarCell[1] = gameBoardrandom[index];
-						playerTurn = 1;
-						precionado = true;
-					}
-					else if ((playerTurn == 1)) {
-						cambiarCell[0] = gameBoardrandom[index];
-						anterior = index;
-						playerTurn = 2;
-					}
-					if (precionado == true) {
-						gameBoardrandom[index] = cambiarCell[0];
-						gameBoardrandom[anterior] = cambiarCell[1];
-						precionado = false;
+		int y = index / 8;
+		int x = index % 8;
+		if (GetGameBoardRect(hWnd, &rc)) {
+			if (NULL != hdc) {
+				//da la dimencion de la casilla dado su index, evita que los colores se sobrepongan y
+				//si el jugador da dos clicls en diferentes casillas lo siguiente intercambia el color de las casillas donde se iso clic
+				if (index != -1) {
+					RECT rcCell;
+					if (GetCellRect(hWnd, index, &rcCell)) {
+						if (playerTurn == 2) {
+							cambiarCell[1] = gameBoardrandom[index];
+							playerTurn = 1;
+							precionado = true;
+						}
+						else if ((playerTurn == 1)) {
+							cambiarCell[0] = gameBoardrandom[index];
+							anterior = index;
+							xAnterior = index % 8;
+							yAnterior = index / 8;
+							playerTurn = 2;
+						}
+						//evita que se muevan casillas en diagonal
+						if (precionado == true && (xAnterior == x + 1 && yAnterior == y)|| (xAnterior == x - 1 && yAnterior == y) || 
+							(yAnterior == y + 1 && xAnterior == x) || (yAnterior == y - 1 && xAnterior == x) && yAnterior != y) {
+							gameBoardrandom[index] = cambiarCell[0];
+							gameBoardrandom[anterior] = cambiarCell[1];
+							//aqui vemos si las piesas que se invirtieron empiesan a destruid
+							recursividad->Asignar(gameBoardrandom, index / 8, index % 8);
+							//aqui cambia el color de la casilla dependiendo del array nuevos colores
+							for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
+								gameBoardrandom[i] = recursividad->nuevosColores[i];
+							}
+							/*for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
+							recursividad->Asignar(gameBoardrandom, xAnterior, yAnterior);
+								gameBoardrandom[i] = recursividad->nuevosColores[i];
+							}*/
+							/*int puntosAnteriores = puntosPlayer;
+							sumaDePuntos();
+							if (puntosAnteriores == puntosPlayer) {
+								gameBoardrandom[index] = cambiarCell[1];
+								gameBoardrandom[anterior] = cambiarCell[0];
+							}*/
+							precionado = false;
+						}
 					}
 				}
+				ReleaseDC(hWnd, hdc);
 			}
-			ReleaseDC(hWnd, hdc);
 		}
 	}
 	break;
@@ -319,10 +354,6 @@ switch (message) {
 						if (random == 2) {
 							FillRect(hdc, &rcCell, (HBRUSH)GetStockObject(GRAY_BRUSH));
 						}
-						
-						/*if (random % 5 == 0) {
-							DrawIcon(hdc, rcCell.left, rcCell.top, jolla1);
-						}*/
 					}
 					//le da un color especifico a la casilla 
 					//inportante
@@ -336,11 +367,8 @@ switch (message) {
 					if (random == 2) {
 						gameBoardrandom[i] = 3;
 					}
-					/*if (random % 5 == 0) {
-						gameBoardrandom[i] = 4;
-					}*/
+
 				}
-				recursividad ->Asignar(gameBoardrandom);
 				cambio = false;
 			}
 			//evita que cambie el color de las casillas cuando se escala la ventana
@@ -355,11 +383,16 @@ switch (message) {
 					if (gameBoardrandom[i] == 3) {
 						FillRect(hdc, &rcCell, (HBRUSH)GetStockObject(GRAY_BRUSH));
 					}
-					/*if (gameBoardrandom[i] == 4) {
-						DrawIcon(hdc, rcCell.left, rcCell.top, jolla1);
-					}*/
 				}
 			}
+			if (playerTurn == 2) {
+				for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
+					gameBoardrandom[i] = recursividad->nuevosColores[i];
+				}
+			}
+			/*for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
+				gameBoardrandom[i] = recursividad->nuevosColores[i];
+			}*/
 			//dibuja todas las celdas ocupadas
 			//si al reescalar la ventana el las regillas se invierten aqui puede haver un bug 
 			//o en la seleccion de color por jugador en el case WM_LBUTTONDOWN de LRESULT
