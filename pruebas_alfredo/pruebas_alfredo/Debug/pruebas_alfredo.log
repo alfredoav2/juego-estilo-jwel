@@ -1,6 +1,6 @@
-﻿  Recursividad.cpp
-  pruebas_alfredo.cpp
+﻿  pruebas_alfredo.cpp
+  Recursividad.cpp
   Generando código...
-  C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(235) : warning C4715: 'Recursividad::Puntos': no todas las rutas de acceso de control devuelven un valor
-  C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(167) : warning C4715: 'Recursividad::Asignarcolor': no todas las rutas de acceso de control devuelven un valor
-  pruebas_alfredo.vcxproj -> C:\Users\Usuario\source\repos\pruebas_alfredo\Debug\pruebas_alfredo.exe
+  C:\Users\Usuario\Desktop\Tarea poo2\juego-estilo-jwel\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(167) : warning C4715: 'Recursividad::Asignarcolor': no todas las rutas de acceso de control devuelven un valor
+  C:\Users\Usuario\Desktop\Tarea poo2\juego-estilo-jwel\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(235) : warning C4715: 'Recursividad::Puntos': no todas las rutas de acceso de control devuelven un valor
+  pruebas_alfredo.vcxproj -> C:\Users\Usuario\Desktop\Tarea poo2\juego-estilo-jwel\pruebas_alfredo\Debug\pruebas_alfredo.exe
