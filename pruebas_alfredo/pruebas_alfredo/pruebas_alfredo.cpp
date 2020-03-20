@@ -312,6 +312,7 @@ switch (message) {
 							}*/
 							precionado = false;
 						}
+						InvalidateRect(hWnd, nullptr, true);
 					}
 				}
 				ReleaseDC(hWnd, hdc);
