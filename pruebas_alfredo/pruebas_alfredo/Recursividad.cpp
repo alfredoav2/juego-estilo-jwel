@@ -14,9 +14,9 @@ int* Recursividad::Asignar(int cellContenido[64], int x, int y) {
 			n++;
 		}
 	}
-	colorADestruir = xyCell[x][y];
 	xOriginal = x;
 	yOriginal = y;
+	colorADestruir = xyCell[x][y];
 	ChecarPorDestrucciones(x,y);
 	return nuevosColores;
 }
@@ -74,7 +74,6 @@ void Recursividad::ChecarPorDestrucciones(int x, int y) {
 		grupoIzquierda++;
 		estadoCell[x][y - 1] = "revisado";
 	}
-	//aqui 
 	if (x != xOriginal && y != yOriginal) {
 		ChecarPorDestrucciones(xOriginal, yOriginal);
 	}
@@ -267,6 +266,7 @@ int Recursividad::Asignarcolor(int random) {
 *@brief cambia los colores de las casillas si hay mas de 3 en una fila 
 */
 void Recursividad::Destruir() {
+	RevisarTodo<int>* rev;
 	int n = 0;
 	int random;
 	for (int i = 0; i < 8; i++) {
@@ -286,6 +286,11 @@ void Recursividad::Destruir() {
 			}
 			n++;
 		}
+	}
+	//aqui va a checar todas las casillas
+	rev = new RevisarTodo<int>(nuevosColores);
+	for (int i = 0; i < 64; i++) {
+		nuevosColores[i] = rev->coloresCambiados[i];
 	}
 }
 /**

@@ -306,29 +306,8 @@ switch (message) {
 							for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
 								gameBoardrandom[i] = recursividad->nuevosColores[i];
 							}
-							//recursividad->Asignar(gameBoardrandom, index / 8, index % 8);
-							////aqui cambia el color de la casilla dependiendo del array nuevos colores
-							//for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
-							//	gameBoardrandom[i] = recursividad->nuevosColores[i];
-							//}
-							//if (checar == 0) {
-							//	recursividad->Asignar(gameBoardrandom, index / 8, index % 8);
-							//	//aqui cambia el color de la casilla dependiendo del array nuevos colores
-							//	for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
-							//		gameBoardrandom[i] = recursividad->nuevosColores[i];
-							//	}
-							//	checar = 1;
-							//}
-							//if (checar == 1) {
-							//	recursividad->Asignar(gameBoardrandom, xAnterior, yAnterior);
-							//	//aqui cambia el color de la casilla dependiendo del array nuevos colores
-							//	for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
-							//		gameBoardrandom[i] = recursividad->nuevosColores[i];
-							//	}
-							//	checar = 0;
-							//}
-							/*for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
-							recursividad->Asignar(gameBoardrandom, xAnterior, yAnterior);
+							/*recursividad->Asignar(gameBoardrandom, xAnterior, yAnterior);
+							for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
 								gameBoardrandom[i] = recursividad->nuevosColores[i];
 							}*/
 							precionado = false;
@@ -399,9 +378,7 @@ switch (message) {
 						}
 					}
 					//le da un color especifico a la casilla 
-					//inportante
 					if (random == 0) {
-						//este valor puede servir para recursividad
 						gameBoardrandom[i] = 1;
 					}
 					if (random == 1) {
@@ -428,7 +405,6 @@ switch (message) {
 					if (random == 8) {
 						gameBoardrandom[i] = 9;
 					}
-
 				}
 				cambio = false;
 			}
@@ -472,31 +448,6 @@ switch (message) {
 			/*for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
 				gameBoardrandom[i] = recursividad->nuevosColores[i];
 			}*/
-			//dibuja todas las celdas ocupadas
-			//si al reescalar la ventana el las regillas se invierten aqui puede haver un bug 
-			//o en la seleccion de color por jugador en el case WM_LBUTTONDOWN de LRESULT
-			//for (int i = 0; i < ARRAYSIZE(gameBoardplayer); i++) {
-			//	if (GetCellRect(hWnd, i, &rcCell)) {
-			//		if (gameBoardplayer[i] == 1) {
-			//			FillRect(hdc, &rcCell, (HBRUSH)GetStockObject(WHITE_BRUSH));
-			//		}
-			//		if (gameBoardplayer[i] == 2) {
-			//			FillRect(hdc, &rcCell, (HBRUSH)GetStockObject(BLACK_BRUSH));
-			//		}
-			//		if (gameBoardplayer[i] == 3) {
-			//			FillRect(hdc, &rcCell, (HBRUSH)GetStockObject(GRAY_BRUSH));
-			//		}
-			//		/*if (gameBoardrandom[i] == 4) {
-			//			DrawIcon(hdc, rcCell.left, rcCell.top, jolla1);
-			//		}*/
-			//	}
-			//}
-			//for (int i = 0; i < ARRAYSIZE(gameBoardplayer); i++) {
-			//	if (gameBoardplayer[i] != 0 && GetCellRect(hWnd, i, &rcCell)) {
-			//		FillRect(hdc, &rcCell, gameBoardplayer[i] == 2 ? (HBRUSH)GetStockObject(BLACK_BRUSH) :
-			//			(HBRUSH)GetStockObject(WHITE_BRUSH));
-			//	}
-			//}
 		}
 		EndPaint(hWnd, &ps);
 	}

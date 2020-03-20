@@ -1,4 +1,8 @@
-﻿  Recursividad.cpp
-  C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(185) : warning C4715: 'Recursividad::Asignarcolor': no todas las rutas de acceso de control devuelven un valor
-  C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(299) : warning C4715: 'Recursividad::Puntos': no todas las rutas de acceso de control devuelven un valor
+﻿  pruebas_alfredo.cpp
+  Recursividad.cpp
+  RevisarTodo.cpp
+  Generando código...
+  C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(184) : warning C4715: 'Recursividad::Asignarcolor': no todas las rutas de acceso de control devuelven un valor
+  C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(304) : warning C4715: 'Recursividad::Puntos': no todas las rutas de acceso de control devuelven un valor
+  C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\RevisarTodo.h(62) : warning C4715: 'RevisarTodo<int>::AsignarColor': no todas las rutas de acceso de control devuelven un valor
   pruebas_alfredo.vcxproj -> C:\Users\Usuario\source\repos\pruebas_alfredo\Debug\pruebas_alfredo.exe

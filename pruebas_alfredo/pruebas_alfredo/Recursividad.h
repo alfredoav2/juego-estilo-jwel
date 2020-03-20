@@ -1,5 +1,6 @@
 #pragma once
 #include "pruebas_alfredo.h"
+#include "RevisarTodo.h"
 #include <iostream>
 #include <string>
 #include <vector>
@@ -17,7 +18,6 @@ private:
 	int grupoAbajo = 0;
 	int grupoDerecha = 0;
 	int grupoIzquierda = 0;
-	std::vector<std::string>revisados;
 public:
 	int* Asignar(int cellContenido[64], int x, int y);
 	void ChecarPorDestrucciones(int x, int y);

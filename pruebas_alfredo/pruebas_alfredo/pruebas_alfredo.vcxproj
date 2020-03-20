@@ -155,11 +155,13 @@
     <ClInclude Include="pruebas_alfredo.h" />
     <ClInclude Include="Recursividad.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="RevisarTodo.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pruebas_alfredo.cpp" />
     <ClCompile Include="Recursividad.cpp" />
+    <ClCompile Include="RevisarTodo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="pruebas_alfredo.rc" />
