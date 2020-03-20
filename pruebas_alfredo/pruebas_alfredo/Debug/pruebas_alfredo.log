@@ -1,8 +1,4 @@
 ﻿  Recursividad.cpp
-  pruebas_alfredo.cpp
-C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\pruebas_alfredo.cpp(301,16): warning C4553:  "==": el resultado de la expresión no se usa. ¿Quiso decir "="?
-  Generando código...
-C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\pruebas_alfredo.cpp(309,16): warning C4553:  "==": el resultado de la expresión no se usa. ¿Quiso decir "="?
-C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\pruebas_alfredo.cpp(309,16): warning C4553: C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(170) : warning C4715: 'Recursividad::Asignarcolor': no todas las rutas de acceso de control devuelven un valor
-C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\pruebas_alfredo.cpp(309,16): warning C4553: C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(284) : warning C4715: 'Recursividad::Puntos': no todas las rutas de acceso de control devuelven un valor
+  C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(185) : warning C4715: 'Recursividad::Asignarcolor': no todas las rutas de acceso de control devuelven un valor
+  C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(299) : warning C4715: 'Recursividad::Puntos': no todas las rutas de acceso de control devuelven un valor
   pruebas_alfredo.vcxproj -> C:\Users\Usuario\source\repos\pruebas_alfredo\Debug\pruebas_alfredo.exe

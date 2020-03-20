@@ -60,5 +60,26 @@
     <Image Include="..\imagenes\Nose.ico">
       <Filter>Archivos de recursos</Filter>
     </Image>
+    <Image Include="imagenes\Nose.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="imagenes\PowerUp1.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="imagenes\PowerUp2.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="imagenes\PowerUp3.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="imagenes\SpaceWolves.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="imagenes\TaoEmpire.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="imagenes\Tyranids.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
   </ItemGroup>
 </Project>

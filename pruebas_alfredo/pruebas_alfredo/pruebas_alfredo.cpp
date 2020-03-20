@@ -134,7 +134,8 @@ bool cambio = true;
 bool precionado = false;
 int gameBoardrandom[64] = {};
 int cambiarCell[3];
-HICON jollaa, jollab;
+HICON jollaA, jollaB, icoCaos, icoChido, icoLunawolfs;
+HICON icoPowerup1, icoPowerup2, icoTau, icoTyranids;
 /**
 *@brief crea el cuadro principal del juego (el fondo)
 *@param pRect rectangulo
@@ -253,8 +254,16 @@ switch (message) {
 	case WM_CREATE: {
 		//brush = CreateSolidBrush(RGB(20,30,5));
 		//cargar los iconos
-		jollaa = LoadIcon(hInst, MAKEINTRESOURCE(IDI_jolla1));
-		jollab = LoadIcon(hInst, MAKEINTRESOURCE(IDI_jolla2));
+		jollaA = LoadIcon(hInst, MAKEINTRESOURCE(IDI_jolla1));
+		jollaB = LoadIcon(hInst, MAKEINTRESOURCE(IDI_jolla2));
+		icoCaos = LoadIcon(hInst, MAKEINTRESOURCE(IDI_caos));
+		icoChido = LoadIcon(hInst, MAKEINTRESOURCE(IDI_chido));
+		icoLunawolfs = LoadIcon(hInst, MAKEINTRESOURCE(IDI_lunawolfs));
+		icoPowerup1 = LoadIcon(hInst, MAKEINTRESOURCE(IDI_powerup1));
+		icoPowerup2 = LoadIcon(hInst, MAKEINTRESOURCE(IDI_powerup2));
+		icoTau = LoadIcon(hInst, MAKEINTRESOURCE(IDI_tau));
+		icoTyranids = LoadIcon(hInst, MAKEINTRESOURCE(IDI_tyranids));
+
 	}
 	break;
 	case WM_LBUTTONDOWN: {
@@ -292,22 +301,32 @@ switch (message) {
 							gameBoardrandom[index] = cambiarCell[0];
 							gameBoardrandom[anterior] = cambiarCell[1];
 							//aqui vemos si las piesas que se invirtieron empiesan a destruid
-							if (checar == 0) {
-								recursividad->Asignar(gameBoardrandom, index / 8, index % 8);
-								//aqui cambia el color de la casilla dependiendo del array nuevos colores
-								for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
-									gameBoardrandom[i] = recursividad->nuevosColores[i];
-								}
-								checar == 1;
+							recursividad->Asignar(gameBoardrandom, index / 8, index % 8);
+							//aqui cambia el color de la casilla dependiendo del array nuevos colores
+							for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
+								gameBoardrandom[i] = recursividad->nuevosColores[i];
 							}
-							if (checar == 1) {
-								recursividad->Asignar(gameBoardrandom, xAnterior, yAnterior);
-								//aqui cambia el color de la casilla dependiendo del array nuevos colores
-								for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
-									gameBoardrandom[i] = recursividad->nuevosColores[i];
-								}
-								checar == 0;
-							}
+							//recursividad->Asignar(gameBoardrandom, index / 8, index % 8);
+							////aqui cambia el color de la casilla dependiendo del array nuevos colores
+							//for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
+							//	gameBoardrandom[i] = recursividad->nuevosColores[i];
+							//}
+							//if (checar == 0) {
+							//	recursividad->Asignar(gameBoardrandom, index / 8, index % 8);
+							//	//aqui cambia el color de la casilla dependiendo del array nuevos colores
+							//	for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
+							//		gameBoardrandom[i] = recursividad->nuevosColores[i];
+							//	}
+							//	checar = 1;
+							//}
+							//if (checar == 1) {
+							//	recursividad->Asignar(gameBoardrandom, xAnterior, yAnterior);
+							//	//aqui cambia el color de la casilla dependiendo del array nuevos colores
+							//	for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
+							//		gameBoardrandom[i] = recursividad->nuevosColores[i];
+							//	}
+							//	checar = 0;
+							//}
 							/*for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
 							recursividad->Asignar(gameBoardrandom, xAnterior, yAnterior);
 								gameBoardrandom[i] = recursividad->nuevosColores[i];
@@ -349,22 +368,34 @@ switch (message) {
 			//rellena al azar las casillas y le dice con el "cambiar" si puede cambiar cuales casillas estan rellenadas
 			if (cambio == true) {
 				for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
-					random = rand() % 4;
+					random = rand() % 9;
 					if (GetCellRect(hWnd, i, &rcCell)) {
 						if (random == 0) {
-							//FillRect(hdc, &rcCell, (HBRUSH)GetStockObject(WHITE_BRUSH));
-							DrawIcon(hdc, rcCell.left, rcCell.top, jollab);
+							DrawIcon(hdc, rcCell.left, rcCell.top, jollaB);
 						}
 						if (random == 1) {
-							FillRect(hdc, &rcCell, (HBRUSH)GetStockObject(BLACK_BRUSH));
+							DrawIcon(hdc, rcCell.left, rcCell.top, jollaA);
 						}
 						if (random == 2) {
-							//FillRect(hdc, &rcCell, (HBRUSH)GetStockObject(GRAY_BRUSH));
-							DrawIcon(hdc, rcCell.left, rcCell.top, jollaa);
+							DrawIcon(hdc, rcCell.left, rcCell.top, icoCaos);
 						}
 						if (random == 3) {
-							//FillRect(hdc, &rcCell, (HBRUSH)GetStockObject(GRAY_BRUSH));
-							FillRect(hdc, &rcCell, (HBRUSH)GetStockObject(GRAY_BRUSH));
+							DrawIcon(hdc, rcCell.left, rcCell.top, icoChido);
+						}
+						if (random == 4) {
+							DrawIcon(hdc, rcCell.left, rcCell.top, icoLunawolfs);
+						}
+						if (random == 5) {
+							DrawIcon(hdc, rcCell.left, rcCell.top, icoPowerup1);
+						}
+						if (random == 6) {
+							DrawIcon(hdc, rcCell.left, rcCell.top, icoPowerup2);
+						}
+						if (random == 7) {
+							DrawIcon(hdc, rcCell.left, rcCell.top, icoTau);
+						}
+						if (random == 8) {
+							DrawIcon(hdc, rcCell.left, rcCell.top, icoTyranids);
 						}
 					}
 					//le da un color especifico a la casilla 
@@ -382,6 +413,21 @@ switch (message) {
 					if (random == 3) {
 						gameBoardrandom[i] = 4;
 					}
+					if (random == 4) {
+						gameBoardrandom[i] = 5;
+					}
+					if (random == 5) {
+						gameBoardrandom[i] = 6;
+					}
+					if (random == 6) {
+						gameBoardrandom[i] = 7;
+					}
+					if (random == 7) {
+						gameBoardrandom[i] = 8;
+					}
+					if (random == 8) {
+						gameBoardrandom[i] = 9;
+					}
 
 				}
 				cambio = false;
@@ -390,18 +436,31 @@ switch (message) {
 			for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
 				if (GetCellRect(hWnd, i, &rcCell)) {
 					if (gameBoardrandom[i] == 1) {
-						DrawIcon(hdc, rcCell.left, rcCell.top, jollab);
+						DrawIcon(hdc, rcCell.left, rcCell.top, jollaB);
 					}
 					if (gameBoardrandom[i] == 2) {
-						FillRect(hdc, &rcCell, (HBRUSH)GetStockObject(BLACK_BRUSH));
+						DrawIcon(hdc, rcCell.left, rcCell.top, jollaA);
 					}
 					if (gameBoardrandom[i] == 3) {
-						DrawIcon(hdc, rcCell.left, rcCell.top, jollaa);
-						//FillRect(hdc, &rcCell, (HBRUSH)GetStockObject(GRAY_BRUSH));
+						DrawIcon(hdc, rcCell.left, rcCell.top, icoCaos);
 					}
 					if (gameBoardrandom[i] == 4) {
-						FillRect(hdc, &rcCell, (HBRUSH)GetStockObject(GRAY_BRUSH));
-						//FillRect(hdc, &rcCell, (HBRUSH)GetStockObject(GRAY_BRUSH));
+						DrawIcon(hdc, rcCell.left, rcCell.top, icoChido);
+					}
+					if (gameBoardrandom[i] == 5) {
+						DrawIcon(hdc, rcCell.left, rcCell.top, icoLunawolfs);
+					}
+					if (gameBoardrandom[i] == 6) {
+						DrawIcon(hdc, rcCell.left, rcCell.top, icoPowerup1);
+					}
+					if (gameBoardrandom[i] == 7) {
+						DrawIcon(hdc, rcCell.left, rcCell.top, icoPowerup2);
+					}
+					if (gameBoardrandom[i] == 8) {
+						DrawIcon(hdc, rcCell.left, rcCell.top, icoTau);
+					}
+					if (gameBoardrandom[i] == 9) {
+						DrawIcon(hdc, rcCell.left, rcCell.top, icoTyranids);
 					}
 				}
 			}

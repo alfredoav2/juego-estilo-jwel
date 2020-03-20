@@ -14,6 +14,14 @@
 #define IDR_MAINFRAME                   128
 #define IDI_jolla1                      129
 #define IDI_jolla2                      130
+#define IDI_chido                       132
+#define IDI_powerup1                    133
+#define IDI_powerup2                    134
+#define IDI_caos                        135
+#define IDI_lunawolfs                   136
+#define IDI_tau                         137
+#define IDI_ICON2                       138
+#define IDI_tyranids                    138
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -21,7 +29,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
-#define _APS_NEXT_RESOURCE_VALUE        132
+#define _APS_NEXT_RESOURCE_VALUE        139
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1000
 #define _APS_NEXT_SYMED_VALUE           110

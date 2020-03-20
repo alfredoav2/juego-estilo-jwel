@@ -168,6 +168,13 @@
     <Image Include="..\imagenes\Nose.ico" />
     <Image Include="imagenes\gema-redonda.ico" />
     <Image Include="imagenes\gema-triangular.ico" />
+    <Image Include="imagenes\Nose.ico" />
+    <Image Include="imagenes\PowerUp1.ico" />
+    <Image Include="imagenes\PowerUp2.ico" />
+    <Image Include="imagenes\PowerUp3.ico" />
+    <Image Include="imagenes\SpaceWolves.ico" />
+    <Image Include="imagenes\TaoEmpire.ico" />
+    <Image Include="imagenes\Tyranids.ico" />
     <Image Include="pruebas_alfredo.ico" />
     <Image Include="small.ico" />
   </ItemGroup>
