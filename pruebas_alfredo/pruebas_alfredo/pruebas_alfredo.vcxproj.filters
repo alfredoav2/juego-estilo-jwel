@@ -51,5 +51,11 @@
     <Image Include="pruebas_alfredo.ico">
       <Filter>Archivos de recursos</Filter>
     </Image>
+    <Image Include="imagenes\gema-redonda.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="imagenes\gema-triangular.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
   </ItemGroup>
 </Project>

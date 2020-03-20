@@ -164,37 +164,86 @@ int Recursividad::Asignarcolor(int random) {
 	if (random == 2) {
 		return 3;
 	}
+	if (random == 3) {
+		return 4;
+	}
 }
 /*
 */
+//int Recursividad::FuncionamietoPowerUp1(int x, int y) {
+//	int random;
+//	if (xyCell[x + 1][y] == 4 && xyCell[x + 2][y] == colorADestruir) {
+//		random = rand() % 4;
+//		nuevosColores[xyCell[x + 1][y]] = Asignarcolor(random);
+//		for (int i = 0; i < 64; i++) {
+//			random = rand() % 4;
+//			if (nuevosColores[i] == colorADestruir) {
+//				nuevosColores[i] = Asignarcolor(random);
+//			}
+//		}
+//	}
+//	if (x > 0 && xyCell[x - 1][y] == 4 && xyCell[x - 2][y] == colorADestruir) {
+//		random = rand() % 4;
+//		nuevosColores[xyCell[x + 1][y]] = Asignarcolor(random);
+//		for (int i = 0; i < 64; i++) {
+//			random = rand() % 4;
+//			if (nuevosColores[i] == colorADestruir) {
+//				nuevosColores[i] = Asignarcolor(random);
+//			}
+//		}
+//	}
+//	if (xyCell[x][y + 1] == 4 && xyCell[x][y + 2] == colorADestruir) {
+//		random = rand() % 4;
+//		nuevosColores[xyCell[x + 1][y]] = Asignarcolor(random);
+//		for (int i = 0; i < 64; i++) {
+//			random = rand() % 4;
+//			if (nuevosColores[i] == colorADestruir) {
+//				nuevosColores[i] = Asignarcolor(random);
+//			}
+//		}
+//	}
+//	if (y > 0 && xyCell[x][y - 1] == 4 && xyCell[x][y - 2] == colorADestruir) {
+//		random = rand() % 4;
+//		nuevosColores[xyCell[x + 1][y]] = Asignarcolor(random);
+//		for (int i = 0; i < 64; i++) {
+//			random = rand() % 4;
+//			if (nuevosColores[i] == colorADestruir) {
+//				nuevosColores[i] = Asignarcolor(random);
+//			}
+//		}
+//	}
+//	return 0;
+//}
 int Recursividad::FuncionamietoPowerUp1(int x, int y) {
-	int random = rand() % 3;
-	if (x < 7 && xyCell[x + 1][y] == 4 && xyCell[x + 2][y] == colorADestruir) {
+	int random;
+	if ( xyCell[x + 1][y] == 4 && xyCell[x + 2][y] == colorADestruir) {
+		random = rand() % 4;
 		for (int i = 0; i < 64; i++) {
-			if (nuevosColores[i] == colorADestruir) {
-				nuevosColores[i] = Asignarcolor(random);
-			}
+			random = rand() % 4;
+			nuevosColores[i] = Asignarcolor(random);
 		}
 	}
 	if (x > 0 && xyCell[x - 1][y] == 4 && xyCell[x - 2][y] == colorADestruir) {
+		random = rand() % 4;
 		for (int i = 0; i < 64; i++) {
-			if (nuevosColores[i] == colorADestruir) {
+			for (int i = 0; i < 64; i++) {
+				random = rand() % 4;
 				nuevosColores[i] = Asignarcolor(random);
 			}
 		}
 	}
-	if (y < 7 && xyCell[x][y + 1] == 4 && xyCell[x][y + 2] == colorADestruir) {
+	if ( xyCell[x][y + 1] == 4 && xyCell[x][y + 2] == colorADestruir) {
+		random = rand() % 4;
 		for (int i = 0; i < 64; i++) {
-			if (nuevosColores[i] == colorADestruir) {
-				nuevosColores[i] = Asignarcolor(random);
-			}
+			random = rand() % 4;
+			nuevosColores[i] = Asignarcolor(random);
 		}
 	}
 	if (y > 0 && xyCell[x][y - 1] == 4 && xyCell[x][y - 2] == colorADestruir) {
+		random = rand() % 4;
 		for (int i = 0; i < 64; i++) {
-			if (nuevosColores[i] == colorADestruir) {
-				nuevosColores[i] = Asignarcolor(random);
-			}
+			random = rand() % 4;
+			nuevosColores[i] = Asignarcolor(random);
 		}
 	}
 	return 0;
@@ -207,7 +256,7 @@ void Recursividad::Destruir() {
 	int random;
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
-			random = rand() % 3;
+			random = rand() % 4;
 			if (grupoArriba > 2 && xyCell[i][j] == bro) {
 				nuevosColores[n] = Asignarcolor(random);
 			}

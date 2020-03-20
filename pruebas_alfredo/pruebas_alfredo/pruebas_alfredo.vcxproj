@@ -165,6 +165,8 @@
     <ResourceCompile Include="pruebas_alfredo.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="imagenes\gema-redonda.ico" />
+    <Image Include="imagenes\gema-triangular.ico" />
     <Image Include="pruebas_alfredo.ico" />
     <Image Include="small.ico" />
   </ItemGroup>
