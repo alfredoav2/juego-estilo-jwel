@@ -25,7 +25,7 @@ int* Recursividad::Asignar(int cellContenido[64], int x, int y) {
 *@param x, y son los valores que se usan en la matriz xyCell para checar su contenido
 */
 void Recursividad::ChecarPorDestrucciones(int x, int y) {
-	FuncionamietoPowerUp1(x, y);
+	//FuncionamietoPowerUp1(x, y);
 	//acia abajo
 	if ((x < 7 && xyCell[x + 1][y] != bro) && xyCell[x + 1][y] == colorADestruir) {
 		xyCell[x][y] = bro;
@@ -214,40 +214,40 @@ int Recursividad::Asignarcolor(int random) {
 //	}
 //	return 0;
 //}
-int Recursividad::FuncionamietoPowerUp1(int x, int y) {
-	int random;
-	if ( xyCell[x + 1][y] == 4 && xyCell[x + 2][y] == colorADestruir) {
-		random = rand() % 4;
-		for (int i = 0; i < 64; i++) {
-			random = rand() % 4;
-			nuevosColores[i] = Asignarcolor(random);
-		}
-	}
-	if (x > 0 && xyCell[x - 1][y] == 4 && xyCell[x - 2][y] == colorADestruir) {
-		random = rand() % 4;
-		for (int i = 0; i < 64; i++) {
-			for (int i = 0; i < 64; i++) {
-				random = rand() % 4;
-				nuevosColores[i] = Asignarcolor(random);
-			}
-		}
-	}
-	if ( xyCell[x][y + 1] == 4 && xyCell[x][y + 2] == colorADestruir) {
-		random = rand() % 4;
-		for (int i = 0; i < 64; i++) {
-			random = rand() % 4;
-			nuevosColores[i] = Asignarcolor(random);
-		}
-	}
-	if (y > 0 && xyCell[x][y - 1] == 4 && xyCell[x][y - 2] == colorADestruir) {
-		random = rand() % 4;
-		for (int i = 0; i < 64; i++) {
-			random = rand() % 4;
-			nuevosColores[i] = Asignarcolor(random);
-		}
-	}
-	return 0;
-}
+//int Recursividad::FuncionamietoPowerUp1(int x, int y) {
+//	int random;
+//	if ( xyCell[x + 1][y] == 4 && xyCell[x + 2][y] == colorADestruir) {
+//		random = rand() % 4;
+//		for (int i = 0; i < 64; i++) {
+//			random = rand() % 4;
+//			nuevosColores[i] = Asignarcolor(random);
+//		}
+//	}
+//	if (x > 0 && xyCell[x - 1][y] == 4 && xyCell[x - 2][y] == colorADestruir) {
+//		random = rand() % 4;
+//		for (int i = 0; i < 64; i++) {
+//			for (int i = 0; i < 64; i++) {
+//				random = rand() % 4;
+//				nuevosColores[i] = Asignarcolor(random);
+//			}
+//		}
+//	}
+//	if ( xyCell[x][y + 1] == 4 && xyCell[x][y + 2] == colorADestruir) {
+//		random = rand() % 4;
+//		for (int i = 0; i < 64; i++) {
+//			random = rand() % 4;
+//			nuevosColores[i] = Asignarcolor(random);
+//		}
+//	}
+//	if (y > 0 && xyCell[x][y - 1] == 4 && xyCell[x][y - 2] == colorADestruir) {
+//		random = rand() % 4;
+//		for (int i = 0; i < 64; i++) {
+//			random = rand() % 4;
+//			nuevosColores[i] = Asignarcolor(random);
+//		}
+//	}
+//	return 0;
+//}
 /**
 *@brief cambia los colores de las casillas si hay mas de 3 en una fila 
 */

@@ -57,5 +57,8 @@
     <Image Include="imagenes\gema-triangular.ico">
       <Filter>Archivos de recursos</Filter>
     </Image>
+    <Image Include="..\imagenes\Nose.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
   </ItemGroup>
 </Project>

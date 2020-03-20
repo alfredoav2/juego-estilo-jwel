@@ -126,6 +126,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 const int CELL_SIZE = 60;
 int playerTurn = 1;
+int checar = 0;
 int anterior = 0;
 int puntosPlayer = 0;
 int xAnterior, yAnterior;
@@ -291,20 +292,25 @@ switch (message) {
 							gameBoardrandom[index] = cambiarCell[0];
 							gameBoardrandom[anterior] = cambiarCell[1];
 							//aqui vemos si las piesas que se invirtieron empiesan a destruid
-							recursividad->Asignar(gameBoardrandom, index / 8, index % 8);
-							//aqui cambia el color de la casilla dependiendo del array nuevos colores
-							for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
-								gameBoardrandom[i] = recursividad->nuevosColores[i];
+							if (checar == 0) {
+								recursividad->Asignar(gameBoardrandom, index / 8, index % 8);
+								//aqui cambia el color de la casilla dependiendo del array nuevos colores
+								for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
+									gameBoardrandom[i] = recursividad->nuevosColores[i];
+								}
+								checar == 1;
+							}
+							if (checar == 1) {
+								recursividad->Asignar(gameBoardrandom, xAnterior, yAnterior);
+								//aqui cambia el color de la casilla dependiendo del array nuevos colores
+								for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
+									gameBoardrandom[i] = recursividad->nuevosColores[i];
+								}
+								checar == 0;
 							}
 							/*for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
 							recursividad->Asignar(gameBoardrandom, xAnterior, yAnterior);
 								gameBoardrandom[i] = recursividad->nuevosColores[i];
-							}*/
-							/*int puntosAnteriores = puntosPlayer;
-							sumaDePuntos();
-							if (puntosAnteriores == puntosPlayer) {
-								gameBoardrandom[index] = cambiarCell[1];
-								gameBoardrandom[anterior] = cambiarCell[0];
 							}*/
 							precionado = false;
 						}
@@ -399,11 +405,11 @@ switch (message) {
 					}
 				}
 			}
-			if (playerTurn == 2) {
+			/*if (playerTurn == 2) {
 				for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
 					gameBoardrandom[i] = recursividad->nuevosColores[i];
 				}
-			}
+			}*/
 			/*for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
 				gameBoardrandom[i] = recursividad->nuevosColores[i];
 			}*/
