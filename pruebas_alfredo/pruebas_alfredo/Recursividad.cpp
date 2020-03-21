@@ -25,7 +25,8 @@ int* Recursividad::Asignar(int cellContenido[64], int x, int y) {
 *@param x, y son los valores que se usan en la matriz xyCell para checar su contenido
 */
 void Recursividad::ChecarPorDestrucciones(int x, int y) {
-	//FuncionamietoPowerUp1(x, y);
+	FuncionamietoPowerUp1(x, y);
+	FuncionamietoPowerUp2(x, y);
 	//acia abajo
 	if ((x < 7 && xyCell[x + 1][y] != bro) && xyCell[x + 1][y] == colorADestruir) {
 		xyCell[x][y] = bro;
@@ -191,86 +192,82 @@ int Recursividad::Asignarcolor(int random) {
 		}
 	}
 }
-/*
+/**
+*@brief si encuentra un index de 10 en medio de un grupo cambia todas las imagenes con el mismo index 
+*@param x, y es la pocicion de la casilla
 */
-//int Recursividad::FuncionamietoPowerUp1(int x, int y) {
-//	int random;
-//	if (xyCell[x + 1][y] == 4 && xyCell[x + 2][y] == colorADestruir) {
-//		random = rand() % 9;
-//		nuevosColores[xyCell[x + 1][y]] = Asignarcolor(random);
-//		for (int i = 0; i < 64; i++) {
-//			random = rand() % 9;
-//			if (nuevosColores[i] == colorADestruir) {
-//				nuevosColores[i] = Asignarcolor(random);
-//			}
-//		}
-//	}
-//	if (x > 0 && xyCell[x - 1][y] == 4 && xyCell[x - 2][y] == colorADestruir) {
-//		random = rand() % 9;
-//		nuevosColores[xyCell[x + 1][y]] = Asignarcolor(random);
-//		for (int i = 0; i < 64; i++) {
-//			random = rand() % 9;
-//			if (nuevosColores[i] == colorADestruir) {
-//				nuevosColores[i] = Asignarcolor(random);
-//			}
-//		}
-//	}
-//	if (xyCell[x][y + 1] == 4 && xyCell[x][y + 2] == colorADestruir) {
-//		random = rand() % 9;
-//		nuevosColores[xyCell[x + 1][y]] = Asignarcolor(random);
-//		for (int i = 0; i < 64; i++) {
-//			random = rand() % 9;
-//			if (nuevosColores[i] == colorADestruir) {
-//				nuevosColores[i] = Asignarcolor(random);
-//			}
-//		}
-//	}
-//	if (y > 0 && xyCell[x][y - 1] == 4 && xyCell[x][y - 2] == colorADestruir) {
-//		random = rand() % 9;
-//		nuevosColores[xyCell[x + 1][y]] = Asignarcolor(random);
-//		for (int i = 0; i < 64; i++) {
-//			random = rand() % 9;
-//			if (nuevosColores[i] == colorADestruir) {
-//				nuevosColores[i] = Asignarcolor(random);
-//			}
-//		}
-//	}
-//	return 0;
-//}
-//int Recursividad::FuncionamietoPowerUp1(int x, int y) {
-//	int random;
-//	if ( xyCell[x + 1][y] == 4 && xyCell[x + 2][y] == colorADestruir) {
-//		random = rand() % 9;
-//		for (int i = 0; i < 64; i++) {
-//			random = rand() % 9;
-//			nuevosColores[i] = Asignarcolor(random);
-//		}
-//	}
-//	if (x > 0 && xyCell[x - 1][y] == 4 && xyCell[x - 2][y] == colorADestruir) {
-//		random = rand() % 9;
-//		for (int i = 0; i < 64; i++) {
-//			for (int i = 0; i < 64; i++) {
-//				random = rand() % 9;
-//				nuevosColores[i] = Asignarcolor(random);
-//			}
-//		}
-//	}
-//	if ( xyCell[x][y + 1] == 4 && xyCell[x][y + 2] == colorADestruir) {
-//		random = rand() % 9;
-//		for (int i = 0; i < 64; i++) {
-//			random = rand() % 9;
-//			nuevosColores[i] = Asignarcolor(random);
-//		}
-//	}
-//	if (y > 0 && xyCell[x][y - 1] == 4 && xyCell[x][y - 2] == colorADestruir) {
-//		random = rand() % 9;
-//		for (int i = 0; i < 64; i++) {
-//			random = rand() % 9;
-//			nuevosColores[i] = Asignarcolor(random);
-//		}
-//	}
-//	return 0;
-//}
+void Recursividad::FuncionamietoPowerUp1(int x, int y) {
+	int random;
+	if (x < 7 && xyCell[x + 1][y] == 10 && xyCell[x + 2][y] == colorADestruir) {
+		for (int i = 0; i < 64; i++) {
+			random = rand() % 110;
+			if (nuevosColores[i] == colorADestruir || nuevosColores[i] == 10) {
+				nuevosColores[i] = Asignarcolor(random);
+			}
+		}
+	}
+	if (x > 0 && xyCell[x - 1][y] == 10 && xyCell[x - 2][y] == colorADestruir) {
+		for (int i = 0; i < 64; i++) {
+			random = rand() % 110;
+			if (nuevosColores[i] == colorADestruir || nuevosColores[i] == 10) {
+				nuevosColores[i] = Asignarcolor(random);
+			}
+		}
+	}
+	if (y < 7 && xyCell[x][y + 1] == 10 && xyCell[x][y + 2] == colorADestruir) {
+		for (int i = 0; i < 64; i++) {
+			random = rand() % 110;
+			if (nuevosColores[i] == colorADestruir || nuevosColores[i] == 10) {
+				nuevosColores[i] = Asignarcolor(random);
+			}
+		}
+	}
+	if (y > 0 && xyCell[x][y - 1] == 10 && xyCell[x][y - 2] == colorADestruir) {
+		for (int i = 0; i < 64; i++) {
+			random = rand() % 110;
+			if (nuevosColores[i] == colorADestruir || nuevosColores[i] == 10) {
+				nuevosColores[i] = Asignarcolor(random);
+			}
+		}
+	}
+}
+/**
+*@brief si encuentra un index de 12 en medio de un grupo cambia todas las imagenes
+*@param x, y es la pocicion de la casilla
+*/
+void Recursividad::FuncionamietoPowerUp2(int x, int y) {
+	int random;
+	if ( xyCell[x + 1][y] == 12 && xyCell[x + 2][y] == colorADestruir) {
+		random = rand() % 110;
+		for (int i = 0; i < 64; i++) {
+			random = rand() % 110;
+			nuevosColores[i] = Asignarcolor(random);
+		}
+	}
+	if (x > 0 && xyCell[x - 1][y] == 12 && xyCell[x - 2][y] == colorADestruir) {
+		random = rand() % 110;
+		for (int i = 0; i < 64; i++) {
+			for (int i = 0; i < 64; i++) {
+				random = rand() % 110;
+				nuevosColores[i] = Asignarcolor(random);
+			}
+		}
+	}
+	if ( xyCell[x][y + 1] == 12 && xyCell[x][y + 2] == colorADestruir) {
+		random = rand() % 110;
+		for (int i = 0; i < 64; i++) {
+			random = rand() % 110;
+			nuevosColores[i] = Asignarcolor(random);
+		}
+	}
+	if (y > 0 && xyCell[x][y - 1] == 12 && xyCell[x][y - 2] == colorADestruir) {
+		random = rand() % 110;
+		for (int i = 0; i < 64; i++) {
+			random = rand() % 110;
+			nuevosColores[i] = Asignarcolor(random);
+		}
+	}
+}
 /**
 *@brief cambia los colores de las casillas si hay mas de 3 en una fila 
 */

@@ -1,6 +1,7 @@
 ﻿  Recursividad.cpp
-  C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(193) : warning C4715: 'Recursividad::Asignarcolor': no todas las rutas de acceso de control devuelven un valor
-  C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(313) : warning C4715: 'Recursividad::Puntos': no todas las rutas de acceso de control devuelven un valor
+  pruebas_alfredo.cpp
+  Generando código...
+  C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(194) : warning C4715: 'Recursividad::Asignarcolor': no todas las rutas de acceso de control devuelven un valor
+  C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(308) : warning C4715: 'Recursividad::Puntos': no todas las rutas de acceso de control devuelven un valor
   C:\Users\Usuario\source\repos\pruebas_alfredo\pruebas_alfredo\RevisarTodo.h(76) : warning C4715: 'RevisarTodo<int>::AsignarColor': no todas las rutas de acceso de control devuelven un valor
-  LINK : no se encontró C:\Users\Usuario\source\repos\pruebas_alfredo\Debug\pruebas_alfredo.exe o no lo generó el último vínculo incremental; ejecutando vínculo completo
   pruebas_alfredo.vcxproj -> C:\Users\Usuario\source\repos\pruebas_alfredo\Debug\pruebas_alfredo.exe

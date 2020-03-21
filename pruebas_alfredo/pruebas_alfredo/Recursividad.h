@@ -27,7 +27,8 @@ public:
 	void ChecarPorDestruccionesDerecha(int x, int y);
 	void ChecarPorDestruccionesIzquierda(int x, int y);
 	void Destruir();
-	//int FuncionamietoPowerUp1(int x, int y);
+	void FuncionamietoPowerUp1(int x, int y);
+	void FuncionamietoPowerUp2(int x, int y);
 	int Asignarcolor(int random);
 	int* nuevosColores = new int[64];
 	int Puntos();
