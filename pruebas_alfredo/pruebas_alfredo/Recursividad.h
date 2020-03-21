@@ -1,6 +1,7 @@
 #pragma once
 #include "pruebas_alfredo.h"
 #include "RevisarTodo.h"
+#include "Exception.h"
 #include <iostream>
 #include <string>
 #include <vector>

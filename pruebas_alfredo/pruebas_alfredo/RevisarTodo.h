@@ -30,37 +30,52 @@ RevisarTodo<Revision>::RevisarTodo(Revision casillas[]) {
 	}
 	Checar();
 }
+/**
+*@brief aqui se crea el valor que determina que imagen se usa en la casilla
+*@param numeroALAzar es un numero random del 0 al 110
+*@return regresa un numero entero que se usara para determinar que imagen va en cada casilla al actualizarse
+*/
 template <class Revision>
 int RevisarTodo<Revision>::AsignarColor(Revision numeroAlAzar) {
-	if (random == 0) {
-		return 2;
+	if (numeroAlAzar >= 5 && numeroAlAzar < 11) {
+		return 10;
 	}
-	if (random == 1) {
-		return 1;
+	if (numeroAlAzar < 5) {
+		return 12;
 	}
-	if (random == 2) {
-		return 3;
-	}
-	if (random == 3) {
-		return 4;
-	}
-	if (random == 4) {
-		return 5;
-	}
-	if (random == 5) {
-		return 6;
-	}
-	if (random == 6) {
-		return 7;
-	}
-	if (random == 7) {
-		return 8;
-	}
-	if (random == 8) {
-		return 9;
+	else if (numeroAlAzar >= 11) {
+		int random2 = rand() % 9;
+		if (random2 == 0) {
+			return 1;
+		}
+		if (random2 == 1) {
+			return 2;
+		}
+		if (random2 == 2) {
+			return 3;
+		}
+		if (random2 == 3) {
+			return 4;
+		}
+		if (random2 == 4) {
+			return 5;
+		}
+		if (random2 == 5) {
+			return 6;
+		}
+		if (random2 == 6) {
+			return 7;
+		}
+		if (random2 == 7) {
+			return 8;
+		}
+		if (random2 == 8) {
+			return 9;
+		}
 	}
 }
-/*
+/**
+*@brief checa toa la pantalla por grupos de 3 o mas para saver si se destrullen
 */
 template<class Revision>
 void RevisarTodo<Revision>::Checar() {
@@ -82,12 +97,16 @@ void RevisarTodo<Revision>::Checar() {
 	}
 	Reemplazar();
 }
+/**
+*@brief reemplaza las imagenes de las casillas si tienen una "etiqueta" de cambiar
+*@return regresa un array de tamaño 64 con todas las nuevas imagenes de las casillas
+*/
 template <class Revision>
 Revision* RevisarTodo<Revision>::Reemplazar() {
 	int n = 0;
 	for (int x = 0; x < 8; x++) {
 		for (int y = 0; y < 8; y++) {
-			random = rand() % 9;
+			random = rand() % 110;
 			if (cambioDeCell[x][y] == "cambiara") {
 				xyCell[x][y] = AsignarColor(random);
 			}

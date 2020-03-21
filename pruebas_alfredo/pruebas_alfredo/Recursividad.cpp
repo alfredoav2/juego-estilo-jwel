@@ -154,32 +154,41 @@ void Recursividad::ChecarPorDestruccionesIzquierda(int x, int y) {
 *@retur regresa un int 
 */
 int Recursividad::Asignarcolor(int random) {
-	if (random == 0) {
-		return 2;
+	if (random >= 5 && random < 11) {
+		return 10;
 	}
-	if (random == 1) {
-		return 1;
+	if (random < 5) {
+		return 12;
 	}
-	if (random == 2) {
-		return 3;
-	}
-	if (random == 3) {
-		return 4;
-	}
-	if (random == 4) {
-		return 5;
-	}
-	if (random == 5) {
-		return 6;
-	}
-	if (random == 6) {
-		return 7;
-	}
-	if (random == 7) {
-		return 8;
-	}
-	if (random == 8) {
-		return 9;
+	else if (random >= 11) {
+		int random2 = rand() % 9;
+		if (random2 == 0) {
+			return 2;
+		}
+		if (random2 == 1) {
+			return 1;
+		}
+		if (random2 == 2) {
+			return 3;
+		}
+		if (random2 == 3) {
+			return 4;
+		}
+		if (random2 == 4) {
+			return 5;
+		}
+		if (random2 == 5) {
+			return 6;
+		}
+		if (random2 == 6) {
+			return 7;
+		}
+		if (random2 == 7) {
+			return 8;
+		}
+		if (random2 == 8) {
+			return 9;
+		}
 	}
 }
 /*
@@ -271,7 +280,7 @@ void Recursividad::Destruir() {
 	int random;
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
-			random = rand() % 9;
+			random = rand() % 110;
 			if (grupoArriba > 2 && xyCell[i][j] == bro) {
 				nuevosColores[n] = Asignarcolor(random);
 			}

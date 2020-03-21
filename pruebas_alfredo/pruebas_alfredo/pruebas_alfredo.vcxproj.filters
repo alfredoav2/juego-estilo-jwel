@@ -33,6 +33,9 @@
     <ClInclude Include="RevisarTodo.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="Exception.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pruebas_alfredo.cpp">
@@ -42,6 +45,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="RevisarTodo.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Exception.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -85,6 +91,18 @@
       <Filter>Archivos de recursos</Filter>
     </Image>
     <Image Include="imagenes\Tyranids.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="imagenes\Caldari.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="imagenes\Intaki.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="imagenes\Minmatar.ico">
+      <Filter>Archivos de recursos</Filter>
+    </Image>
+    <Image Include="imagenes\Vherokior.ico">
       <Filter>Archivos de recursos</Filter>
     </Image>
   </ItemGroup>

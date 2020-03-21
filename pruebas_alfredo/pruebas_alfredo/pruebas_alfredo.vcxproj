@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Exception.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pruebas_alfredo.h" />
     <ClInclude Include="Recursividad.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Exception.cpp" />
     <ClCompile Include="pruebas_alfredo.cpp" />
     <ClCompile Include="Recursividad.cpp" />
     <ClCompile Include="RevisarTodo.cpp" />
@@ -168,8 +170,11 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\imagenes\Nose.ico" />
+    <Image Include="imagenes\Caldari.ico" />
     <Image Include="imagenes\gema-redonda.ico" />
     <Image Include="imagenes\gema-triangular.ico" />
+    <Image Include="imagenes\Intaki.ico" />
+    <Image Include="imagenes\Minmatar.ico" />
     <Image Include="imagenes\Nose.ico" />
     <Image Include="imagenes\PowerUp1.ico" />
     <Image Include="imagenes\PowerUp2.ico" />
@@ -177,6 +182,7 @@
     <Image Include="imagenes\SpaceWolves.ico" />
     <Image Include="imagenes\TaoEmpire.ico" />
     <Image Include="imagenes\Tyranids.ico" />
+    <Image Include="imagenes\Vherokior.ico" />
     <Image Include="pruebas_alfredo.ico" />
     <Image Include="small.ico" />
   </ItemGroup>

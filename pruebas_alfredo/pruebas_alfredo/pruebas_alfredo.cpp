@@ -136,6 +136,7 @@ int gameBoardrandom[64] = {};
 int cambiarCell[3];
 HICON jollaA, jollaB, icoCaos, icoChido, icoLunawolfs;
 HICON icoPowerup1, icoPowerup2, icoTau, icoTyranids;
+HICON icoCaldari, icoMinmatar, icoVherokior, icoIntaki;
 /**
 *@brief crea el cuadro principal del juego (el fondo)
 *@param pRect rectangulo
@@ -220,16 +221,6 @@ bool GetCellRect(HWND hWnd, int index, RECT* pRect) {
 	return false;
 }
 /**
-*@brief suma las puntuaciones para que no se repita demaciadas veces en la funcion principal
-*/
-//no funciono
-int sumaDePuntos() {
-	Recursividad* recursividad;
-	recursividad = new Recursividad;
-	puntosPlayer += recursividad->Puntos();
-	return 0;
-}
-/**
 *@brief esto es para saver que color hay en especifico en cada casilla y poder usar x, y (k, j) 
 *@brief para comparar en recursividad
 *@param cellContenido es un array que contiene los colores de todas las casillas
@@ -263,7 +254,10 @@ switch (message) {
 		icoPowerup2 = LoadIcon(hInst, MAKEINTRESOURCE(IDI_powerup2));
 		icoTau = LoadIcon(hInst, MAKEINTRESOURCE(IDI_tau));
 		icoTyranids = LoadIcon(hInst, MAKEINTRESOURCE(IDI_tyranids));
-
+		icoMinmatar = LoadIcon(hInst, MAKEINTRESOURCE(IDI_minimatar));
+		icoIntaki = LoadIcon(hInst, MAKEINTRESOURCE(IDI_intaki));
+		icoVherokior = LoadIcon(hInst, MAKEINTRESOURCE(IDI_vherokior));
+		icoCaldari = LoadIcon(hInst, MAKEINTRESOURCE(IDI_caldari));
 	}
 	break;
 	case WM_LBUTTONDOWN: {
@@ -297,7 +291,7 @@ switch (message) {
 						}
 						//evita que se muevan casillas en diagonal
 						if (precionado == true && (xAnterior == x + 1 && yAnterior == y)|| (xAnterior == x - 1 && yAnterior == y) || 
-							(yAnterior == y + 1 && xAnterior == x) || (yAnterior == y - 1 && xAnterior == x) && yAnterior != y) {
+							(yAnterior == y + 1 && xAnterior == x) || (yAnterior == y - 1 && xAnterior == x)) {
 							gameBoardrandom[index] = cambiarCell[0];
 							gameBoardrandom[anterior] = cambiarCell[1];
 							//aqui vemos si las piesas que se invirtieron empiesan a destruid
@@ -306,10 +300,6 @@ switch (message) {
 							for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
 								gameBoardrandom[i] = recursividad->nuevosColores[i];
 							}
-							/*recursividad->Asignar(gameBoardrandom, xAnterior, yAnterior);
-							for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
-								gameBoardrandom[i] = recursividad->nuevosColores[i];
-							}*/
 							precionado = false;
 						}
 						InvalidateRect(hWnd, nullptr, true);
@@ -337,6 +327,7 @@ switch (message) {
 		RECT rc;
 		RECT rcCell;
 		int random = 0;
+		int tipoImagen = 0;
 		if (GetGameBoardRect(hWnd, &rc)) {
 			FillRect(hdc, &rc, (HBRUSH)GetStockObject(WHITE_BRUSH));
 			// TODO: Agregar cualquier código de dibujo que use hDC aquí...
@@ -348,34 +339,43 @@ switch (message) {
 			//rellena al azar las casillas y le dice con el "cambiar" si puede cambiar cuales casillas estan rellenadas
 			if (cambio == true) {
 				for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
-					random = rand() % 9;
 					if (GetCellRect(hWnd, i, &rcCell)) {
-						if (random == 0) {
-							DrawIcon(hdc, rcCell.left, rcCell.top, jollaB);
-						}
-						if (random == 1) {
-							DrawIcon(hdc, rcCell.left, rcCell.top, jollaA);
-						}
-						if (random == 2) {
-							DrawIcon(hdc, rcCell.left, rcCell.top, icoCaos);
-						}
-						if (random == 3) {
-							DrawIcon(hdc, rcCell.left, rcCell.top, icoChido);
-						}
-						if (random == 4) {
-							DrawIcon(hdc, rcCell.left, rcCell.top, icoLunawolfs);
-						}
-						if (random == 5) {
+						tipoImagen = rand() % 110;
+						if (tipoImagen >= 5 && tipoImagen < 11) {
 							DrawIcon(hdc, rcCell.left, rcCell.top, icoPowerup1);
 						}
-						if (random == 6) {
+						if (tipoImagen < 5 ) {
 							DrawIcon(hdc, rcCell.left, rcCell.top, icoPowerup2);
 						}
-						if (random == 7) {
-							DrawIcon(hdc, rcCell.left, rcCell.top, icoTau);
-						}
-						if (random == 8) {
-							DrawIcon(hdc, rcCell.left, rcCell.top, icoTyranids);
+						else if(tipoImagen >= 11){
+							random = rand() % 9;
+							if (random == 0) {
+								DrawIcon(hdc, rcCell.left, rcCell.top, icoVherokior);
+							}
+							if (random == 1) {
+								DrawIcon(hdc, rcCell.left, rcCell.top, icoCaldari);
+							}
+							if (random == 2) {
+								DrawIcon(hdc, rcCell.left, rcCell.top, icoCaos);
+							}
+							if (random == 3) {
+								DrawIcon(hdc, rcCell.left, rcCell.top, icoChido);
+							}
+							if (random == 4) {
+								DrawIcon(hdc, rcCell.left, rcCell.top, icoLunawolfs);
+							}
+							if (random == 5) {
+								DrawIcon(hdc, rcCell.left, rcCell.top, icoMinmatar);
+							}
+							if (random == 6) {
+								DrawIcon(hdc, rcCell.left, rcCell.top, icoIntaki);
+							}
+							if (random == 7) {
+								DrawIcon(hdc, rcCell.left, rcCell.top, icoTau);
+							}
+							if (random == 8) {
+								DrawIcon(hdc, rcCell.left, rcCell.top, icoTyranids);
+							}
 						}
 					}
 					//le da un color especifico a la casilla 
@@ -406,6 +406,12 @@ switch (message) {
 					if (random == 8) {
 						gameBoardrandom[i] = 9;
 					}
+					if (tipoImagen >= 5 && tipoImagen < 11) {
+						gameBoardrandom[i] = 10;
+					}
+					if (tipoImagen < 5) {
+						gameBoardrandom[i] = 12;
+					}
 				}
 				cambio = false;
 			}
@@ -413,10 +419,10 @@ switch (message) {
 			for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) {
 				if (GetCellRect(hWnd, i, &rcCell)) {
 					if (gameBoardrandom[i] == 1) {
-						DrawIcon(hdc, rcCell.left, rcCell.top, jollaB);
+						DrawIcon(hdc, rcCell.left, rcCell.top, icoVherokior);
 					}
 					if (gameBoardrandom[i] == 2) {
-						DrawIcon(hdc, rcCell.left, rcCell.top, jollaA);
+						DrawIcon(hdc, rcCell.left, rcCell.top, icoCaldari);
 					}
 					if (gameBoardrandom[i] == 3) {
 						DrawIcon(hdc, rcCell.left, rcCell.top, icoCaos);
@@ -428,16 +434,22 @@ switch (message) {
 						DrawIcon(hdc, rcCell.left, rcCell.top, icoLunawolfs);
 					}
 					if (gameBoardrandom[i] == 6) {
-						DrawIcon(hdc, rcCell.left, rcCell.top, icoPowerup1);
+						DrawIcon(hdc, rcCell.left, rcCell.top, icoMinmatar);
 					}
 					if (gameBoardrandom[i] == 7) {
-						DrawIcon(hdc, rcCell.left, rcCell.top, icoPowerup2);
+						DrawIcon(hdc, rcCell.left, rcCell.top, icoIntaki);
 					}
 					if (gameBoardrandom[i] == 8) {
 						DrawIcon(hdc, rcCell.left, rcCell.top, icoTau);
 					}
 					if (gameBoardrandom[i] == 9) {
 						DrawIcon(hdc, rcCell.left, rcCell.top, icoTyranids);
+					}
+					if (gameBoardrandom[i] == 10) {
+						DrawIcon(hdc, rcCell.left, rcCell.top, icoPowerup1);
+					}
+					if (gameBoardrandom[i] == 12) {
+						DrawIcon(hdc, rcCell.left, rcCell.top, icoPowerup2);
 					}
 				}
 			}
