@@ -1,0 +1,8 @@
+﻿  Exception.cpp
+  pruebas_alfredo.cpp
+  Recursividad.cpp
+  RevisarTodo.cpp
+  Generating Code...
+C:\Users\julia\Desktop\juego-estilo-jwel\pruebas_alfredo\pruebas_alfredo\Recursividad.cpp(223): warning C4715: 'Recursividad::Asignarcolor': not all control paths return a value
+C:\Users\julia\Desktop\juego-estilo-jwel\pruebas_alfredo\pruebas_alfredo\RevisarTodo.h(82): warning C4715: 'RevisarTodo<int>::AsignarColor': not all control paths return a value
+  pruebas_alfredo.vcxproj -> C:\Users\julia\Desktop\juego-estilo-jwel\pruebas_alfredo\x64\Debug\pruebas_alfredo.exe
