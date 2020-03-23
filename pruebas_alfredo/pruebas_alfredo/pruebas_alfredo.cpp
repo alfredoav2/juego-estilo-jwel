@@ -129,7 +129,7 @@ static int CELL_SIZE = 60;
 int playerTurn = 1;
 int checar = 0;
 int anterior = 0;
-int accionesJugador = 1;
+int accionesJugador = 40;
 int xAnterior, yAnterior;
 bool cambio = true;
 bool precionado = false;
@@ -257,7 +257,7 @@ switch (message)
 				recursividad->puntos = 0;
 				checar = 0;
 				anterior = 0;
-				accionesJugador = 1;
+				accionesJugador = 40;
 				xAnterior, yAnterior;
 				cambio = true;
 				precionado = false;
@@ -279,7 +279,7 @@ switch (message)
 				recursividad->puntos = 0;
 				checar = 0;
 				anterior = 0;
-				accionesJugador = 1;
+				accionesJugador = 40;
 				xAnterior, yAnterior;
 				cambio = true;
 				precionado = false;
@@ -301,7 +301,7 @@ switch (message)
 				recursividad->puntos = 0;
 				checar = 0;
 				anterior = 0;
-				accionesJugador = 1;
+				accionesJugador = 40;
 				xAnterior, yAnterior;
 				cambio = true;
 				precionado = false;
@@ -373,7 +373,7 @@ switch (message)
 							cambiarCell[1] = gameBoardrandom[index];
 							playerTurn = 1;
 							precionado = true;
-							accionesJugador++;
+							accionesJugador--;
 						}
 						else if ((playerTurn == 1)) 
 						{
@@ -406,7 +406,7 @@ switch (message)
 							playerTurn = 0;
 						}
 						//Derrota.
-						else if (accionesJugador >= 40)
+						else if (accionesJugador <= 0)
 						{
 							MessageBox(hWnd, L"You are a disgrace...", MB_OK, MB_ICONEXCLAMATION);
 							playerTurn = 0;
@@ -451,9 +451,15 @@ switch (message)
 			}
 
 			TCHAR szBuffer[20];
+			TCHAR szzBuffer[20];
 			int len = wsprintf(szBuffer, TEXT("Score: %6d"), recursividad->GetPuntos());
+			int move = wsprintf(szzBuffer, TEXT("Moves %6d"), accionesJugador);
 			SetBkMode(hdc, OPAQUE);
 			TextOut(hdc, rc.left - 20, rc.top - 20, szBuffer, len);
+			SetBkMode(hdc, TRANSPARENT);
+
+			SetBkMode(hdc, OPAQUE);
+			TextOut(hdc, rc.left + 100, rc.top - 20, szzBuffer, len);
 			SetBkMode(hdc, TRANSPARENT);
 
 			//rellena al azar las casillas y le dice con el "cambiar" si puede cambiar cuales casillas estan rellenadas
