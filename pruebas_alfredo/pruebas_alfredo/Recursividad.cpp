@@ -374,5 +374,12 @@ void Recursividad::Destruir()
 */
 int Recursividad::GetPuntos()
 {
-	return puntos;
+	try 
+	{
+		return puntos;
+	}
+	catch (...)
+	{
+		throw(puntos = 0);
+	}
 }

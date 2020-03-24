@@ -16,6 +16,7 @@ private:
 	int yOriginal = 0;
 	int colorADestruir;
 	int bro = 0;
+	int grupo = 0;
 	int grupoArriba = 0;
 	int grupoAbajo = 0;
 	int grupoDerecha = 0;

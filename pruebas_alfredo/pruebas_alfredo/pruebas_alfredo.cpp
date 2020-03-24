@@ -5,8 +5,12 @@
 #include "pruebas_alfredo.h"
 #include "Recursividad.h"
 #include <array>
+#include <vector>
 #include <Windowsx.h>
+#include <fstream>
+#include <string.h>
 
+std::ofstream textfile;
 #define MAX_LOADSTRING 100
 
 // Variables globales:
@@ -126,15 +130,19 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 static int CELL_SIZE = 60;
 
+int puntosPasar = 200;
 int playerTurn = 1;
 int checar = 0;
 int anterior = 0;
-int accionesJugador = 40;
+int accionesJugador = 20;
 int xAnterior, yAnterior;
 bool cambio = true;
 bool precionado = false;
 int gameBoardrandom[64] = {};
 int cambiarCell[3];
+std::string line;
+std::ifstream myFile("puntuacion.txt");
+std::vector<std::string> VecRecupera;
 
 HICON jollaA, jollaB, icoCaos, icoChido, icoLunawolfs;
 HICON icoPowerup1, icoPowerup2, icoTau, icoTyranids;
@@ -250,21 +258,36 @@ switch (message)
 		//Reinicia al nivel 1 junto con todas las variables a su estado inicial.
 		case ID_NEWGAME:
 		{
-			int reset = MessageBox(hWnd, L"Start New Battle?", L"New Battle", MB_YESNO | MB_ICONQUESTION);
-			if (IDYES == reset)
+			try 
 			{
-				playerTurn = 1;
-				recursividad->puntos = 0;
-				checar = 0;
-				anterior = 0;
-				accionesJugador = 40;
-				xAnterior, yAnterior;
-				cambio = true;
-				precionado = false;
-				ZeroMemory(gameBoardrandom, sizeof(gameBoardrandom));
+				int reset = MessageBox(hWnd, L"Start New Battle?", L"New Battle", MB_YESNO | MB_ICONQUESTION);
+				if (IDYES == reset)
+				{
+					try 
+					{
+						CELL_SIZE = 60;
+						playerTurn = 1;
+						recursividad->puntos = 0;
+						checar = 0;
+						anterior = 0;
+						accionesJugador = 40;
+						xAnterior, yAnterior;
+						cambio = true;
+						precionado = false;
+						ZeroMemory(gameBoardrandom, sizeof(gameBoardrandom));
 
-				InvalidateRect(hWnd, NULL, TRUE);
-				UpdateWindow(hWnd);
+						InvalidateRect(hWnd, NULL, TRUE);
+						UpdateWindow(hWnd);
+					}
+					catch (...)
+					{
+						throw(MessageBox(hWnd, L"Something its wrong!", L"Fatal Error!", MB_HELP | MB_ICONEXCLAMATION));
+					}
+				}
+			}
+			catch(...)
+			{
+				throw(MessageBox(hWnd, L"Something its wrong!", L"Fatal Error!", MB_HELP | MB_ICONEXCLAMATION));
 			}
 		}
 		break;
@@ -274,19 +297,26 @@ switch (message)
 			int reset = MessageBox(hWnd, L"Start Second Battle?", L"Second Battle", MB_YESNO | MB_ICONQUESTION);
 			if (IDYES == reset)
 			{
-				CELL_SIZE = 70;
-				playerTurn = 1;
-				recursividad->puntos = 0;
-				checar = 0;
-				anterior = 0;
-				accionesJugador = 40;
-				xAnterior, yAnterior;
-				cambio = true;
-				precionado = false;
-				ZeroMemory(gameBoardrandom, sizeof(gameBoardrandom));
+				try 
+				{
+					CELL_SIZE = 40;
+					playerTurn = 1;
+					recursividad->puntos = 0;
+					checar = 0;
+					anterior = 0;
+					accionesJugador = 40;
+					xAnterior, yAnterior;
+					cambio = true;
+					precionado = false;
+					ZeroMemory(gameBoardrandom, sizeof(gameBoardrandom));
 
-				InvalidateRect(hWnd, NULL, TRUE);
-				UpdateWindow(hWnd);
+					InvalidateRect(hWnd, NULL, TRUE);
+					UpdateWindow(hWnd);
+				}
+				catch (...)
+				{
+					throw(MessageBox(hWnd, L"Something its wrong!", L"Fatal Error!", MB_HELP | MB_ICONEXCLAMATION));
+				}
 			}
 		}
 		break;
@@ -296,19 +326,25 @@ switch (message)
 			int reset = MessageBox(hWnd, L"Start Third Battle?", L"Third Battle", MB_YESNO | MB_ICONQUESTION);
 			if (IDYES == reset)
 			{
-				CELL_SIZE = 40;
-				playerTurn = 1;
-				recursividad->puntos = 0;
-				checar = 0;
-				anterior = 0;
-				accionesJugador = 40;
-				xAnterior, yAnterior;
-				cambio = true;
-				precionado = false;
-				ZeroMemory(gameBoardrandom, sizeof(gameBoardrandom));
+				try {
+					CELL_SIZE = 50;
+					playerTurn = 1;
+					recursividad->puntos = 0;
+					checar = 0;
+					anterior = 0;
+					accionesJugador = 40;
+					xAnterior, yAnterior;
+					cambio = true;
+					precionado = false;
+					ZeroMemory(gameBoardrandom, sizeof(gameBoardrandom));
 
-				InvalidateRect(hWnd, NULL, TRUE);
-				UpdateWindow(hWnd);
+					InvalidateRect(hWnd, NULL, TRUE);
+					UpdateWindow(hWnd);
+				}
+				catch (...)
+				{
+					throw(MessageBox(hWnd, L"Something its wrong!", L"Fatal Error!", MB_HELP | MB_ICONEXCLAMATION));
+				}
 			}
 		}
 		break;
@@ -363,53 +399,68 @@ switch (message)
 					RECT rcCell;
 					if (GetCellRect(hWnd, index, &rcCell)) 
 					{
-						//Igualar el playerTurn a 0 evita que siga interactuando el usuario con la tabla.
-						if (playerTurn == 0)
-						{
-							break;
-						}
-						if (playerTurn == 2) 
-						{
-							cambiarCell[1] = gameBoardrandom[index];
-							playerTurn = 1;
-							precionado = true;
-							accionesJugador--;
-						}
-						else if ((playerTurn == 1)) 
-						{
-							cambiarCell[0] = gameBoardrandom[index];
-							anterior = index;
-							xAnterior = index % 8;
-							yAnterior = index / 8;
-							playerTurn = 2;
-						}
-						//evita que se muevan casillas en diagonal
-						if (precionado == true && (xAnterior == x + 1 && yAnterior == y)|| (xAnterior == x - 1 && yAnterior == y) || 
-							(yAnterior == y + 1 && xAnterior == x) || (yAnterior == y - 1 && xAnterior == x)) 
-						{
-							gameBoardrandom[index] = cambiarCell[0];
-							gameBoardrandom[anterior] = cambiarCell[1];
-							//aqui vemos si las piesas que se invirtieron empiesan a destruir
-							recursividad->Asignar(gameBoardrandom, index / 8, index % 8);
-							//aqui cambia el color de la casilla dependiendo del array nuevos colores
-							for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++) 
+						try {
+							//Igualar el playerTurn a 0 evita que siga interactuando el usuario con la tabla.
+							if (playerTurn == 0)
 							{
-								gameBoardrandom[i] = recursividad->nuevosColores[i];
+								break;
 							}
-							precionado = false;
+							if (playerTurn == 2)
+							{
+								cambiarCell[1] = gameBoardrandom[index];
+								playerTurn = 1;
+								precionado = true;
+								accionesJugador--;
+							}
+							else if ((playerTurn == 1))
+							{
+								cambiarCell[0] = gameBoardrandom[index];
+								anterior = index;
+								xAnterior = index % 8;
+								yAnterior = index / 8;
+								playerTurn = 2;
+							}
+							//evita que se muevan casillas en diagonal
+							if (precionado == true && (xAnterior == x + 1 && yAnterior == y) || (xAnterior == x - 1 && yAnterior == y) ||
+								(yAnterior == y + 1 && xAnterior == x) || (yAnterior == y - 1 && xAnterior == x))
+							{
+								gameBoardrandom[index] = cambiarCell[0];
+								gameBoardrandom[anterior] = cambiarCell[1];
+								//aqui vemos si las piesas que se invirtieron empiesan a destruir
+								recursividad->Asignar(gameBoardrandom, index / 8, index % 8);
+								//aqui cambia el color de la casilla dependiendo del array nuevos colores
+								for (int i = 0; i < ARRAYSIZE(gameBoardrandom); i++)
+								{
+									gameBoardrandom[i] = recursividad->nuevosColores[i];
+								}
+								precionado = false;
+							}
+							//Sistema de victoria/derrrota.
+							//Victoria.
+							if (recursividad->GetPuntos() >= puntosPasar)
+							{
+								MessageBox(hWnd, L"You fight with honor!", MB_OK, MB_ICONEXCLAMATION);
+								puntosPasar += 300;
+								CELL_SIZE = 60;
+								playerTurn = 1;
+								checar = 0;
+								anterior = 0;
+								accionesJugador = 20;
+								xAnterior, yAnterior;
+								cambio = true;
+								precionado = false;
+								ZeroMemory(gameBoardrandom, sizeof(gameBoardrandom));
+							}
+							//Derrota.
+							else if (accionesJugador <= 0)
+							{
+								MessageBox(hWnd, L"You are a disgrace...", MB_OK, MB_ICONEXCLAMATION);
+								playerTurn = 0;
+							}
 						}
-						//Sistema de victoria/derrrota.
-						//Victoria.
-						if (recursividad->GetPuntos() >= 200)
+						catch (...)
 						{
-							MessageBox(hWnd, L"You fight with honor!", MB_OK, MB_ICONEXCLAMATION);
-							playerTurn = 0;
-						}
-						//Derrota.
-						else if (accionesJugador <= 0)
-						{
-							MessageBox(hWnd, L"You are a disgrace...", MB_OK, MB_ICONEXCLAMATION);
-							playerTurn = 0;
+							throw(MessageBox(hWnd, L"Something its wrong!", L"Fatal Error!", MB_HELP | MB_ICONEXCLAMATION));
 						}
 						InvalidateRect(hWnd, nullptr, true);
 					}
@@ -623,6 +674,44 @@ switch (message)
 	}
 	break;
 	case WM_DESTROY:
+		if (myFile.is_open()) 
+		{
+			while (getline(myFile, line)) 
+			{
+				try 
+				{
+					std::string delimiter = ".";
+					std::string caracteristica = line.substr(0, line.find(delimiter));
+					VecRecupera.push_back(caracteristica);
+				}
+				catch (...)
+				{
+					throw(MessageBox(hWnd, L"Something its wrong!", L"Fatal Error!", MB_HELP | MB_ICONEXCLAMATION));
+				}
+			}
+		}
+		else 
+		{
+			std::cout << "unable to open file";
+		}
+		textfile.open("puntuacion.txt");
+		if (recursividad->puntos > std::stoi(VecRecupera.back())) {
+			std::string Nuevomallor = std::to_string(recursividad->puntos);
+			//VecRecupera.push_back(Nuevomallor);
+			std::string A = VecRecupera.at(0);
+			std::string B = VecRecupera.at(1);
+			std::string C = VecRecupera.at(2);
+			std::string D = VecRecupera.at(3);
+			VecRecupera.at(1) = A;
+			VecRecupera.at(2) = B;
+			VecRecupera.at(3) = C;
+			VecRecupera.at(4) = D;
+			VecRecupera.at(0) = Nuevomallor;
+		}
+		for (int i = 0; i < 5; i++) {
+			textfile << VecRecupera[i] << "\n";
+		}
+		textfile.close();
 		PostQuitMessage(0);
 		break;
 	default:
